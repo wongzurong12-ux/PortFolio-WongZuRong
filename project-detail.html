@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Detail</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #backBtn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #333;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .modal {
+      background: white;
+      width: 90%;
+      max-width: 700px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: slideUp 0.4s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal h2 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .modal p {
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .modal .tech {
+      margin: 15px 0;
+      color: #666;
+      font-style: italic;
+    }
+
+    .btn-group {
+      margin-top: 20px;
+    }
+
+    .btn-group a {
+      margin-right: 10px;
+      padding: 10px 16px;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-group a:hover {
+      background-color: #023e8a;
+    }
+
+    /* Slideshow styles */
+    .slideshow-container {
+      position: relative;
+      margin-top: 30px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .mySlides {
+      display: none;
+    }
+
+    .mySlides img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 12px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.3s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      background-color: rgba(0,0,0,0.5);
+      transform: translateY(-50%);
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .dots {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .active, .dot:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <a id="backBtn" href="index.html">← Back to Home</a>
+
+  <div class="modal">
+    <h2>Smart RFID Car Parking System UI Design</h2>
+    
+
+
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+      <div class="mySlides">
+        <img src="slide1.png" alt="Slide 1">
+      </div>
+      <div class="mySlides">
+        <img src="slideshow2.png" alt="Slide 2">
+      </div>
+      <div class="mySlides">
+        <img src="slideshow3.png" alt="Slide 3">
+      </div>
+      <div class="mySlides">
+        <img src="slideshow4.png" alt="Slide 4">
+      </div>
+      <div class="mySlides">
+        <img src="slideshow5.png" alt="Slide 5">
+      </div>
+      <div class="mySlides">
+        <img src="slide6.png" alt="Slide 6">
+      </div>
+      <div class="mySlides">
+        <img src="slideshow7.png" alt="Slide 7">
+      </div>
+      <div class="mySlides">
+        <img src="slideshow8.png" alt="Slide 8">
+      </div>
+      <div class="mySlides">
+        <img src="slideshow9.png" alt="Slide 9">
+      </div>
+      <div class="mySlides">
+        <img src="slideshow10.png" alt="Slide 10">
+      </div>
+      <div class="mySlides">
+        <img src="slideshow11.png" alt="Slide 11">
+      </div>
+
+      <a class="prev" onclick="plusSlides(-1)">❮</a>
+      <a class="next" onclick="plusSlides(1)">❯</a>
+    </div>
+
+    <div class="dots">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+      <span class="dot" onclick="currentSlide(6)"></span>
+      <span class="dot" onclick="currentSlide(7)"></span>
+      <span class="dot" onclick="currentSlide(8)"></span>
+      <span class="dot" onclick="currentSlide(9)"></span>
+      <span class="dot" onclick="currentSlide(10)"></span>
+      <span class="dot" onclick="currentSlide(11)"></span>
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("mySlides");
+    const dots = document.getElementsByClassName("dot");
+
+    function showSlides(n) {
+      if (n >= slides.length) slideIndex = 0;
+      if (n < 0) slideIndex = slides.length - 1;
+
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+
+      slides[slideIndex].style.display = "block";
+      dots[slideIndex].className += " active";
+    }
+
+    function plusSlides(n) {
+      slideIndex += n;
+      if (slideIndex >= slides.length) slideIndex = 0;
+      if (slideIndex < 0) slideIndex = slides.length - 1;
+      showSlides(slideIndex);
+    }
+
+    function currentSlide(n) {
+      slideIndex = n - 1;
+      showSlides(slideIndex);
+    }
+
+    function autoSlides() {
+      slideIndex++;
+      if (slideIndex >= slides.length) slideIndex = 0;
+      showSlides(slideIndex);
+    }
+
+    showSlides(slideIndex);
+    setInterval(autoSlides, 5000); // Auto change every 5 seconds
+  </script>
+
+</body>
+</html>

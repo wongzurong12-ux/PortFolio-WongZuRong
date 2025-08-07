@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart RFID Car Parking System | Wong Zu Rong</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 30px;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      color: #2c3e50;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .back-btn {
+      margin-bottom: 20px;
+      padding: 10px 18px;
+      border: none;
+      background-color: #0077b6;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #005b8f;
+    }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: #0077b6;
+      margin-bottom: 12px;
+    }
+
+    .transparent-btn {
+      padding: 8px 16px;
+      border: 2px solid #0077b6;
+      background: transparent;
+      color: #0077b6;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .transparent-btn:hover {
+      background: #0077b6;
+      color: #fff;
+    }
+
+    h2 {
+      margin-top: 35px;
+      font-size: 1.4rem;
+      color: #023e8a;
+    }
+
+    p {
+      line-height: 1.8;
+      margin-top: 10px;
+    }
+
+    ul {
+      margin-top: 10px;
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .btn-group {
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-right: 15px;
+      margin-top: 12px;
+      padding: 12px 22px;
+      background: #00b894;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #009b76;
+    }
+
+    .btn.github {
+      background: #333;
+    }
+
+    .btn.github:hover {
+      background: #000;
+    }
+
+    /* --- MODAL STYLING --- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 800px;
+      width: 90%;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* --- SLIDESHOW STYLING --- */
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      margin-top: 20px;
+    }
+
+    .mySlides {
+      display: none;
+    }
+
+    .mySlides img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.3s;
+      border-radius: 0 3px 3px 0;
+      background-color: rgba(0,0,0,0.5);
+      user-select: none;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .dots {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .active {
+      background-color: #717171;
+    }
+
+    @media (max-width: 600px) {
+      .btn {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      .title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="about.html" class="back-btn">← Back to Portfolio</a>
+
+    <div class="title-row">
+      <h1>Smart RFID Car Parking System</h1>
+      <button class="transparent-btn" onclick="openMultiVideoModal()">View Demo Video</button> <!-- NEW -->
+      <button class="transparent-btn" onclick="openModal()">View UI Design</button>
+    </div>
+
+    <p>This mobile app was developed specifically for TAR UMT’s Block K parking area to modernize vehicle access using RFID and IoT technology...</p>
+
+    <h2>🔍 Project Overview</h2>
+    <p>Each registered vehicle is equipped with an RFID tag...</p>
+
+    <h2>💡 Key Features</h2>
+    <ul>
+      <li>Secure user registration and login</li>
+      <li>Live parking availability tracking</li>
+      <li>RFID-enabled gate access</li>
+      <li>Push notification alerts</li>
+      <li>Entry and exit logging with user roles</li>
+      <li>Data encryption and audit trail for security</li>
+    </ul>
+
+    <h2>🛠 Technologies Used</h2>
+    <ul>
+      <li><strong>Frontend:</strong> Kotlin with Jetpack Compose</li>
+      <li><strong>Backend:</strong> Firebase Authentication, Firestore</li>
+      <li><strong>IoT:</strong> RFID Reader + Tag</li>
+    </ul>
+
+    <div class="btn-group">
+      <a class="btn" href="https://drive.google.com/file/d/1f2iELTgpBAh56w5_xXESrfHdK4qfUKH3/view?usp=sharing" target="_blank">📥 Download APK</a>
+      <a class="btn github" href="https://github.com/wongzurong12-ux/SmartRFIDCarParking.git" target="_blank">🌐 View on GitHub</a>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="detailModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <center><h2>Smart RFID Car Parking System UI Design</h2></center>
+
+      <!-- Slideshow -->
+      <div class="slideshow-container">
+      <div class="mySlides">
+        <img src="image/slide1.png" alt="Slide 1">
+      </div>
+      <div class="mySlides">
+        <img src="image/slideshow2.png" alt="Slide 2">
+      </div>
+      <div class="mySlides">
+        <img src="image/slideshow3.png" alt="Slide 3">
+      </div>
+      <div class="mySlides">
+        <img src="image/slideshow4.png" alt="Slide 4">
+      </div>
+      <div class="mySlides">
+        <img src="image/slideshow5.png" alt="Slide 5">
+      </div>
+      <div class="mySlides">
+        <img src="image/slide6.png" alt="Slide 6">
+      </div>
+      <div class="mySlides">
+        <img src="image/slideshow7.png" alt="Slide 7">
+      </div>
+      <div class="mySlides">
+        <img src="image/slideshow8.png" alt="Slide 8">
+      </div>
+      <div class="mySlides">
+        <img src="image/slideshow9.png" alt="Slide 9">
+      </div>
+      <div class="mySlides">
+        <img src="image/slideshow10.png" alt="Slide 10">
+      </div>
+      <div class="mySlides">
+        <img src="image/slideshow11.png" alt="Slide 11">
+      </div>
+
+        <!-- Add more slides as needed -->
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+      </div>
+
+      <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+      <span class="dot" onclick="currentSlide(6)"></span>
+      <span class="dot" onclick="currentSlide(7)"></span>
+      <span class="dot" onclick="currentSlide(8)"></span>
+      <span class="dot" onclick="currentSlide(9)"></span>
+      <span class="dot" onclick="currentSlide(10)"></span>
+      <span class="dot" onclick="currentSlide(11)"></span>
+      </div>
+    </div>
+  </div>
+
+<!-- NEW: Multi-video scrollable modal -->
+<div id="multiVideoModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeMultiVideoModal()">&times;</span>
+    <center><h2>Smart RFID Car Parking – Full Video Demo</h2></center>
+
+    <div style="position: relative; margin-top: 20px;">
+      <!-- Scroll Buttons -->
+      <button id="scrollLeft" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 10;">&#8592;</button>
+      <button id="scrollRight" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 10;">&#8594;</button>
+
+   <!-- Scrollable Container -->
+<div id="videoScrollContainer" style="display: flex; overflow-x: auto; gap: 20px; scroll-behavior: smooth; padding: 10px;">
+  
+  <!-- Google Drive Video -->
+  <iframe 
+  src="https://drive.google.com/file/d/1F_g35HE1_HXtvkpXIUm2v2idH9k7DRxp/preview" 
+  width="300" 
+  height="200" 
+  allow="autoplay; encrypted-media" 
+  allowfullscreen>
+</iframe>
+<iframe 
+  src="https://drive.google.com/file/d/1WCFggyy0rdCNA2xKTOAir7g9Cj8dFaCc/preview" 
+  width="300" 
+  height="200" 
+  allow="autoplay; encrypted-media" 
+  allowfullscreen>
+</iframe>
+
+<iframe 
+  src="https://drive.google.com/file/d/1Od2vG83mOtVZ3s1NWR8xgenWKTgWaaBD/preview" 
+  width="300" 
+  height="200" 
+  allow="autoplay; encrypted-media" 
+  allowfullscreen>
+</iframe>
+
+
+  
+  
+
+</div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+  <!-- JS -->
+  <script>
+    const modal = document.getElementById("detailModal");
+
+    function openModal() {
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    // Close modal if clicked outside content
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+
+    // Slideshow JS
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("mySlides");
+    const dots = document.getElementsByClassName("dot");
+
+    function showSlides(n) {
+      if (n >= slides.length) slideIndex = 0;
+      if (n < 0) slideIndex = slides.length - 1;
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      slides[slideIndex].style.display = "block";
+      dots[slideIndex].classList.add("active");
+    }
+
+    function plusSlides(n) {
+      slideIndex += n;
+      showSlides(slideIndex);
+    }
+
+    function currentSlide(n) {
+      slideIndex = n - 1;
+      showSlides(slideIndex);
+    }
+
+    function autoSlides() {
+      slideIndex++;
+      if (slideIndex >= slides.length) slideIndex = 0;
+      showSlides(slideIndex);
+    }
+
+    showSlides(slideIndex);
+    setInterval(autoSlides, 5000);
+
+
+   
+   // Multi Video Modal Functions
+  const multiVideoModal = document.getElementById("multiVideoModal");
+
+  function openMultiVideoModal() {
+    multiVideoModal.style.display = "flex";
+  }
+
+  function closeMultiVideoModal() {
+    multiVideoModal.style.display = "none";
+  }
+
+  window.addEventListener("click", function(event) {
+    if (event.target === multiVideoModal) {
+      closeMultiVideoModal();
+    }
+  });
+
+  // Scroll Buttons Functionality
+  const scrollContainer = document.getElementById('videoScrollContainer');
+  const scrollLeftBtn = document.getElementById('scrollLeft');
+  const scrollRightBtn = document.getElementById('scrollRight');
+
+  scrollLeftBtn.addEventListener('click', () => {
+    scrollContainer.scrollBy({ left: -320, behavior: 'smooth' });
+  });
+
+  scrollRightBtn.addEventListener('click', () => {
+    scrollContainer.scrollBy({ left: 320, behavior: 'smooth' });
+  });
+
+  </script>
+</body>
+</html>
